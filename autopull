@@ -1,0 +1,28 @@
+#!/bin/bash
+
+cd "PATH TO UR BACKUP-FOLDER"
+echo ''
+pwd
+
+for entry in `ls`; do
+    if [[ $entry == *".group" ]]; then
+        cd "$entry"
+        echo $entry
+        echo ''
+        for subentry in `ls`; do
+            echo $subentry
+            echo ''
+            cd "$subentry"
+            git pull --all 
+            cd ..
+        done
+        cd ..
+    else
+    	pwd
+        echo $entry
+        echo ''
+        cd "$entry"
+        git pull --all
+        cd ..
+fi
+done
